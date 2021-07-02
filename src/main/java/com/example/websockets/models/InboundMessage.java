@@ -1,4 +1,4 @@
-package com.example.websockets.data;
+package com.example.websockets.models;
 
 public class InboundMessage extends Message {
 

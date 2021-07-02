@@ -1,0 +1,3 @@
+DROP TABLE Message IF EXISTS;
+
+CREATE TABLE Message ()

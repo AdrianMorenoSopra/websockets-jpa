@@ -4,8 +4,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import com.example.websockets.data.InboundMessage;
-import com.example.websockets.data.OutboundMessage;
+import com.example.websockets.models.InboundMessage;
+import com.example.websockets.models.OutboundMessage;
 
 @Controller
 public class CommunicationsHubController {

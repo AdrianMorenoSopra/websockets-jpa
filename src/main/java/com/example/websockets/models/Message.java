@@ -1,9 +1,15 @@
-package com.example.websockets.data;
+package com.example.websockets.models;
 
-import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-//@Data
+@Entity
 public abstract class Message {
+	
+	@Id
+	@GeneratedValue
+	private long id;
 	
 	private String content;
 	
