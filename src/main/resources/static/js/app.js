@@ -69,6 +69,7 @@ function show(msg) {
      li.appendTo("#chat");
      li.find( "p" ).html( msg.content );
      li.find("#timestamp").html(formattedDate);
+     li.find("#msgUser").html(msg.user)
      li.show();
 
 }
