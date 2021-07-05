@@ -15,8 +15,12 @@ public class MessageService {
 	@Autowired
 	private MessageRepository repository;
 	
-	public List<Message> getAll() {
+	public List<Message> findAll() {
 		return repository.findAll();
+	}
+	
+	public Message save(Message message) {
+		return repository.save(message);
 	}
 
 }

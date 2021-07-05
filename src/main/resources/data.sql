@@ -1,1 +1,0 @@
-INSERT INTO "Message" values (1,"First message");
