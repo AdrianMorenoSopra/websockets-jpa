@@ -24,6 +24,15 @@ function connect() {
                                     function (greeting) {
                                         show(JSON.parse(greeting.body).content);
                                 });
+                                stompClient.subscribe('/user/queue/reply',
+                                	function (messageList) {
+                                	var list = JSON.parse(messageList.body);
+                                	for(msg of list){
+                                        show(msg.content);
+                                	}
+                                });
+                                stompClient.send("/app/welcome", {}, '{"user": "test"}');
+
                             }
     );
 }
