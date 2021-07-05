@@ -7,5 +7,7 @@ create sequence SEQ
 
 CREATE TABLE Message (
     id int,
+    user varchar(100),
+    date date,
     content varchar(255));
     

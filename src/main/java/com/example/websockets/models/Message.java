@@ -1,5 +1,7 @@
 package com.example.websockets.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,8 @@ public class Message {
 	private long id;
 	
 	private String content;
+	private String user;
+	private Date date = new Date();
 	
 	
 	public Message() {}
@@ -32,6 +36,20 @@ public class Message {
 		this.content = content;
 	}
 
-	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 }
