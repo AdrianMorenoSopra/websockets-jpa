@@ -1,14 +1,14 @@
 package com.example.websockets;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 import com.example.websockets.models.Message;
@@ -27,9 +27,9 @@ public class CommunicationsHubController {
 		return service.save(message);
 	}
 
-	@MessageMapping("/welcome")
+	@SubscribeMapping("/verbose")
 	@SendToUser("/queue/reply")
-	public List<Message> sendSysReply(@Payload Message msg) throws Exception {
+	public List<Message> sendSysReply() throws Exception {
 		return service.findAll();
 	}
 

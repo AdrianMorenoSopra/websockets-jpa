@@ -16,7 +16,7 @@ function setConnected(connected) {
 function connect() {
     var socket = new SockJS('/thedfa-communicationshub');
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
+    stompClient.connect($('#name').val(), $('#name').val(), function (frame) {
                                 setConnected(true);
                                 console.log('Connected: ' + frame);
 
@@ -31,7 +31,6 @@ function connect() {
                                         show(msg);
                                 	}
                                 });
-                                stompClient.send("/app/welcome", {}, '{"user": "test"}');
 
                             }
     );
