@@ -1,6 +1,6 @@
 package com.example.websockets.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class Message {
 	
 	private String content;
 	private String user;
-	private Date date = new Date();
+	private LocalDateTime date = LocalDateTime.now();
 	
 	
 	public Message() {}
@@ -44,11 +44,11 @@ public class Message {
 		this.user = user;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 

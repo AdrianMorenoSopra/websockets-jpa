@@ -21,14 +21,14 @@ function connect() {
                                 console.log('Connected: ' + frame);
 
                                 stompClient.subscribe('/topic/verbose', 
-                                    function (greeting) {
-                                        show(JSON.parse(greeting.body).content);
+                                    function (response) {
+                                        show(JSON.parse(response.body));
                                 });
                                 stompClient.subscribe('/user/queue/reply',
                                 	function (messageList) {
                                 	var list = JSON.parse(messageList.body);
                                 	for(msg of list){
-                                        show(msg.content);
+                                        show(msg);
                                 	}
                                 });
                                 stompClient.send("/app/welcome", {}, '{"user": "test"}');
@@ -49,24 +49,26 @@ function sendMessage() {
     stompClient.send("/app/send", {}, JSON.stringify({'content': $("#content").val()}));
 }
 
-function show(message) {
+function show(msg) {
     //$("#messages").append("<tr><td>" + message + "</td></tr>");
 
-    var now = new Date();
-            console.log(now);
-            var d = now.getDate();
-            var m = now.getMonth()+1;
-            var y = now.getFullYear();
-            var h = now.getHours();
-            var min = now.getMinutes();
 
-            Fecha = d + "/" + m + "/" + y + "  " + h + ":" + min;
+            console.log(msg.date);
+            var date = new Date();
+            date.setTime(Date.parse(msg.date));
+            var d = date.getDate();
+            var m = date.getMonth()+1;
+            var y = date.getFullYear();
+            var h = date.getHours();
+            var min = date.getMinutes();
+
+            formattedDate = d + "/" + m + "/" + y + "  " + h + ":" + min;
             
-    console.log(message);
+    console.log(msg);
      var li = $("#inboundtemplate").clone();
      li.appendTo("#chat");
-     li.find( "p" ).html( message );
-     li.find("#timestamp").html(Fecha);
+     li.find( "p" ).html( msg.content );
+     li.find("#timestamp").html(formattedDate);
      li.show();
 
 }
