@@ -1,5 +1,6 @@
 package com.example.websockets.models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -9,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Message {
+public class Message implements Serializable{
 	
+	private static final long serialVersionUID = 3768018051471469579L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "Seq")
 	@SequenceGenerator(sequenceName = "SEQ", name="Seq", allocationSize=1, initialValue=10)

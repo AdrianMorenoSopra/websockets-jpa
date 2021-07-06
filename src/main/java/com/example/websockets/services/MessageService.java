@@ -16,7 +16,7 @@ public class MessageService {
 	private MessageRepository repository;
 	
 	public List<Message> findAll() {
-		return repository.findAll();
+		return repository.findAllByOrderByDateAsc();
 	}
 	
 	public Message save(Message message) {

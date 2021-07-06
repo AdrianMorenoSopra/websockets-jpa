@@ -1,13 +1,16 @@
 var stompClient = null;
+var user = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#conversation").show();
+        user = $("#name").val();
     }
     else {
         $("#conversation").hide();
+        user = null;
     }
 
     //$("#greetings").html("");
@@ -45,7 +48,7 @@ function disconnect() {
 }
 
 function sendMessage() {
-    stompClient.send("/app/send", {}, JSON.stringify({'content': $("#content").val()}));
+    stompClient.send("/app/send", {}, JSON.stringify({'content': $("#content").val(), 'user': user}));
 }
 
 function show(msg) {
