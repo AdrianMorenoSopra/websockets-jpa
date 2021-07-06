@@ -14,6 +14,9 @@ public class Message implements Serializable{
 	
 	private static final long serialVersionUID = 3768018051471469579L;
 
+	/*
+	 * We use a Sequence to create the id. Starts by 10 to let use the 10 first ids for the mock data in Data.sql
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "Seq")
 	@SequenceGenerator(sequenceName = "SEQ", name="Seq", allocationSize=1, initialValue=10)

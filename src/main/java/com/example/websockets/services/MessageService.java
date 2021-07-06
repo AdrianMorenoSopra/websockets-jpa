@@ -15,10 +15,16 @@ public class MessageService {
 	@Autowired
 	private MessageRepository repository;
 	
+	/*
+	 * Return all messages in the server, internally, we order them by date.
+	 */
 	public List<Message> findAll() {
 		return repository.findAllByOrderByDateAsc();
 	}
 	
+	/*
+	 * Saves a message of the chat to the server.
+	 */
 	public Message save(Message message) {
 		return repository.save(message);
 	}

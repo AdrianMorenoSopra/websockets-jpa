@@ -18,6 +18,9 @@ public class CommunicationsHubController {
 	@Autowired
 	MessageService service;
 
+	/*
+	 * Main topic of the chat, to broadcast messages between all users.
+	 */
 	@MessageMapping("/send")
 	@SendTo("/topic/verbose")
 	public Message send(Message message) throws Exception {
@@ -25,6 +28,10 @@ public class CommunicationsHubController {
 		return service.save(message);
 	}
 
+	/*
+	 * Method used to retrieve message history of the db and send it to a user when it connects.
+	 * The history is sent by channel /queue/reply, which is used to send system messages.
+	 */
 	@SubscribeMapping("/verbose")
 	@SendToUser("/queue/reply")
 	public List<Message> sendSysReply() throws Exception {
