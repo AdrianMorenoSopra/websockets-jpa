@@ -13,7 +13,7 @@ function setConnected(connected) {
         user = null;
     }
 
-    //$("#greetings").html("");
+    // $("#greetings").html("");
 }
 
 function connect() {
@@ -25,16 +25,15 @@ function connect() {
 
                                 stompClient.subscribe('/topic/verbose', 
                                     function (response) {
-                                        show(JSON.parse(response.body));
-                                });
-                                stompClient.subscribe('/user/queue/reply',
-                                	function (messageList) {
-                                	var list = JSON.parse(messageList.body);
-                                	for(msg of list){
-                                        show(msg);
+                                	var responseObject = JSON.parse(response.body);
+                                	if(Array.isArray(responseObject)) {
+                                    	for(msg of responseObject){
+                                            show(msg);
+                                    	}
+                                	} else {
+                                        show(responseObject);
                                 	}
                                 });
-
                             }
     );
 }
@@ -52,7 +51,7 @@ function sendMessage() {
 }
 
 function show(msg) {
-    //$("#messages").append("<tr><td>" + message + "</td></tr>");
+    // $("#messages").append("<tr><td>" + message + "</td></tr>");
 
 
             console.log(msg.date);
@@ -82,13 +81,13 @@ $(function () {
     });
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
-    /* $( "#send" ).click(function() {  }); */
+    /* $( "#send" ).click(function() { }); */
 });
 
 $(document).ready(
     function() {
 
-        //var Nombre= prompt("Nombre:");
+        // var Nombre= prompt("Nombre:");
 
         $('#send').click(function(){
             var now = new Date();
@@ -102,12 +101,9 @@ $(document).ready(
             Fecha = d + "/" + m + "/" + y + "  " + h + ":" + min;
 
             /*
-            TabladeBaseDatos.push({
-                Nombre:Nombre,
-                Mensaje:$("#Mensaje").val(),
-                Fecha:Fecha
-            });
-            * */
+			 * TabladeBaseDatos.push({ Nombre:Nombre,
+			 * Mensaje:$("#Mensaje").val(), Fecha:Fecha });
+			 */
 
            sendMessage();
 

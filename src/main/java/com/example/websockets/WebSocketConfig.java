@@ -17,14 +17,14 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	/**
-	 * Method that configs the channels of the chat.
+	 * Method that configs the channel of the chat.
 	 * 
 	 * @param config
 	 *            The object whose methods are called to configure the chat.
 	 */
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/topic/", "/queue");
+		config.enableSimpleBroker("/topic/");
 		config.setApplicationDestinationPrefixes("/app", "/topic");
 		config.setUserDestinationPrefix("/user");
 	}

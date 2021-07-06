@@ -26,7 +26,8 @@ public class CommunicationsHubController {
 	MessageService service;
 
 	/**
-	 * Main topic of the chat, to broadcast messages between all users.
+	 * Main topic of the chat, to broadcast messages between all users, after a
+	 * simulated delay of 1 sec.
 	 * 
 	 * @param message
 	 *            The message that the user has sent by the chat.
@@ -43,15 +44,13 @@ public class CommunicationsHubController {
 
 	/**
 	 * Method used to retrieve message history of the db and send it to a user when
-	 * it connects. The history is sent by channel /queue/reply, which is used to
-	 * send system messages.
+	 * it connects. The history is sent only to the subscribing user.
 	 * 
-	 * @return A list of all the {@code Message} that asre stored on the DB.
+	 * @return A list of all the {@code Message} that are stored on the DB.
 	 * @throws Exception
 	 *             Any exception will be throw and result in a 500 error
 	 */
 	@SubscribeMapping("/verbose")
-	@SendToUser("/queue/reply")
 	public List<Message> sendSysReply() throws Exception {
 		return service.findAll();
 	}
