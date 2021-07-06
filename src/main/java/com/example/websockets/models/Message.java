@@ -9,29 +9,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+/**
+ * POJO class for Messages.
+ * 
+ * @author admoreno
+ */
 @Entity
-public class Message implements Serializable{
-	
+public class Message implements Serializable {
+
 	private static final long serialVersionUID = 3768018051471469579L;
 
-	/*
-	 * We use a Sequence to create the id. Starts by 10 to let use the 10 first ids for the mock data in Data.sql
-	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "Seq")
-	@SequenceGenerator(sequenceName = "SEQ", name="Seq", allocationSize=1, initialValue=10)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq")
+	@SequenceGenerator(sequenceName = "SEQ", name = "Seq", allocationSize = 1, initialValue = 10)
 	private long id;
-	
+
 	private String content;
 	private String user;
 	private LocalDateTime date = LocalDateTime.now();
-	
-	
-	public Message() {}
+
+	public Message() {
+	}
 
 	public Message(String content) {
 		super();
 		this.content = content;
+	}
+
+	/**
+	 * The Id of the message. By default, it uses an {@code @SequenceGenerator} that
+	 * starts by 10 to left some ids for the mock values created by data.sql.
+	 * 
+	 * @return The id of the message.
+	 */
+	public long getId() {
+		return id;
 	}
 
 	public String getContent() {
