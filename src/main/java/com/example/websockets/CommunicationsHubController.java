@@ -1,5 +1,6 @@
 package com.example.websockets;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,13 @@ import com.example.websockets.services.MessageService;
 
 @Controller
 public class CommunicationsHubController {
+	
+	private static Message welcomeMessage = 
+			new Message("Welcome to WebSocketsJPA chat! (Not the best name in the world, I know)");
+	
+	static {
+		welcomeMessage.setUser("System");
+	}
 
 	@Autowired
 	MessageService service;
@@ -52,7 +60,10 @@ public class CommunicationsHubController {
 	 */
 	@SubscribeMapping("/verbose")
 	public List<Message> sendSysReply() throws Exception {
-		return service.findAll();
+		List<Message> result = service.findAll();
+		welcomeMessage.setDate(LocalDateTime.now());
+		result.add(welcomeMessage);
+		return result;
 	}
 
 }
